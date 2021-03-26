@@ -1,0 +1,41 @@
+Golden Ratio Method:
+Номер итерации: 1, current interval: 0, 6, difference bewteen stuff: 1, Amount of func calls: 0
+Номер итерации: 2, current interval: 2,2917960675006306, 6, difference bewteen stuff: 1,6180339887498947, Amount of func calls: 1
+Номер итерации: 3, current interval: 3,7082039324993694, 6, difference bewteen stuff: 1,6180339887498951, Amount of func calls: 2
+Номер итерации: 4, current interval: 4,583592135001261, 6, difference bewteen stuff: 1,6180339887498938, Amount of func calls: 3
+Номер итерации: 5, current interval: 4,583592135001261, 5,458980337503154, difference bewteen stuff: 1,6180339887498958, Amount of func calls: 4
+Номер итерации: 6, current interval: 4,9179606750063085, 5,458980337503154, difference bewteen stuff: 1,6180339887498951, Amount of func calls: 5
+Номер итерации: 7, current interval: 4,9179606750063085, 5,252329215011356, difference bewteen stuff: 1,6180339887498942, Amount of func calls: 6
+Номер итерации: 8, current interval: 5,045678092519558, 5,252329215011356, difference bewteen stuff: 1,6180339887498967, Amount of func calls: 7
+Номер итерации: 9, current interval: 5,045678092519558, 5,173395510032807, difference bewteen stuff: 1,61803398874989, Amount of func calls: 8
+Номер итерации: 10, current interval: 5,094461805054259, 5,173395510032807, difference bewteen stuff: 1,6180339887499078, Amount of func calls: 9
+Номер итерации: 11, current interval: 5,094461805054259, 5,143245517588959, difference bewteen stuff: 1,6180339887498907, Amount of func calls: 10
+Номер итерации: 12, current interval: 5,094461805054259, 5,124611797498107, difference bewteen stuff: 1,6180339887499058, Amount of func calls: 11
+Номер итерации: 13, current interval: 5,105978077407256, 5,124611797498107, difference bewteen stuff: 1,6180339887498665, Amount of func calls: 12
+Номер итерации: 14, current interval: 5,105978077407256, 5,117494349760253, difference bewteen stuff: 1,618033988749969, Amount of func calls: 13
+Номер итерации: 15, current interval: 5,1103769020224, 5,117494349760253, difference bewteen stuff: 1,6180339887499022, Amount of func calls: 14
+Номер итерации: 16, current interval: 5,11309552514511, 5,117494349760253, difference bewteen stuff: 1,6180339887502022, Amount of func calls: 15
+Номер итерации: 17, current interval: 5,11309552514511, 5,115814148267819, difference bewteen stuff: 1,6180339887496187, Amount of func calls: 16
+Номер итерации: 18, current interval: 5,11309552514511, 5,114775726637545, difference bewteen stuff: 1,6180339887506179, Amount of func calls: 17
+Номер итерации: 19, current interval: 5,113737305007271, 5,114775726637545, difference bewteen stuff: 1,6180339887493858, Amount of func calls: 18
+Номер итерации: 20, current interval: 5,113737305007271, 5,114379084869433, difference bewteen stuff: 1,6180339887512276, Amount of func calls: 19
+Номер итерации: 21, current interval: 5,113982443101322, 5,114379084869433, difference bewteen stuff: 1,618033988750029, Amount of func calls: 20
+Номер итерации: 22, current interval: 5,114133946775383, 5,114379084869433, difference bewteen stuff: 1,6180339887554063, Amount of func calls: 21
+Номер итерации: 23, current interval: 5,114133946775383, 5,114285450449444, difference bewteen stuff: 1,6180339887449513, Amount of func calls: 22
+Номер итерации: 24, current interval: 5,114133946775383, 5,114227581195372, difference bewteen stuff: 1,618033988762837, Amount of func calls: 23
+Номер итерации: 25, current interval: 5,114169711941302, 5,114227581195372, difference bewteen stuff: 1,6180339887408455, Amount of func calls: 24
+Номер итерации: 26, current interval: 5,114169711941302, 5,1142054771072205, difference bewteen stuff: 1,6180339887735866, Amount of func calls: 25
+Номер итерации: 27, current interval: 5,114169711941302, 5,114191816029454, difference bewteen stuff: 1,6180339886878692, Amount of func calls: 26
+Номер итерации: 28, current interval: 5,114178154951686, 5,114191816029454, difference bewteen stuff: 1,6180339888070832, Amount of func calls: 27
+Номер итерации: 29, current interval: 5,114178154951686, 5,114186597962069, difference bewteen stuff: 1,6180339887703863, Amount of func calls: 28
+Номер итерации: 30, current interval: 5,114178154951686, 5,11418337301907, difference bewteen stuff: 1,6180339889716568, Amount of func calls: 29
+Номер итерации: 31, current interval: 5,114180148076071, 5,11418337301907, difference bewteen stuff: 1,6180339886149355, Amount of func calls: 30
+Номер итерации: 32, current interval: 5,114181379894685, 5,11418337301907, difference bewteen stuff: 1,618033989103223, Amount of func calls: 31
+Номер итерации: 33, current interval: 5,114181379894685, 5,114182611713299, difference bewteen stuff: 1,6180339878248702, Amount of func calls: 32
+Номер итерации: 34, current interval: 5,114181850407528, 5,114182611713299, difference bewteen stuff: 1,6180339892839595, Amount of func calls: 33
+Номер итерации: 35, current interval: 5,114181850407528, 5,114182320920371, difference bewteen stuff: 1,6180339873516953, Amount of func calls: 34
+Номер итерации: 36, current interval: 5,114182030127442, 5,114182320920371, difference bewteen stuff: 1,6180339924104286, Amount of func calls: 35
+Номер итерации: 37, current interval: 5,114182141200455, 5,114182320920371, difference bewteen stuff: 1,618033971170146, Amount of func calls: 36
+Номер итерации: 38, current interval: 5,114182141200455, 5,11418225227347, difference bewteen stuff: 1,6180340088975518, Amount of func calls: 37
+Minimum: 5,114182209847356
+5,114182209847356y val: -5,1843962087149125
