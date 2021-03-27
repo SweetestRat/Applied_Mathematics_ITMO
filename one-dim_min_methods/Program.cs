@@ -305,18 +305,18 @@ namespace PRIMAT_LAB1
             double u = 0;
             interamount = 0;
             amountoffunccomputation = 0;
-            while (Math.Round(Math.Abs(c - a), epsilon.ToString().Length - 3) > epsilon)
+            while (Math.Round(Math.Abs(d), epsilon.ToString().Length - 3) > epsilon)
             {
                 
                 Console.WriteLine("Interation: " + interamount + ", Current interval: (" + a + ", " + c + ")" + ", xmin: " + ((c + a) / 2) +  ", Current amount of func calculations: " + amountoffunccomputation);
                 double g = e;
                 e = d;
-
+ 
                 if (!(isSame(x, w, v) && isSame(fx, fw, fv)))
                 {
                     u = parabolaMin(x, w, v, fx, fw, fv);
                 }
-
+ 
                 if (a + epsilon <= u && c - epsilon >= u && Math.Abs(u - x) < 0.5 * g)
                 {
                     d = Math.Abs(u - x);
@@ -381,7 +381,7 @@ namespace PRIMAT_LAB1
                 }
                 interamount++;
             }
-            return w;
+            return x;
         }
         private static double parabolaMin(double x1, double x2, double x3, double y1, double y2, double y3)
         {
