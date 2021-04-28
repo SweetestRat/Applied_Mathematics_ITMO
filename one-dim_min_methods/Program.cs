@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PRIMAT_LAB1
 {
@@ -28,7 +31,7 @@ namespace PRIMAT_LAB1
     /// <summary>
     /// Fedor's Dihotomy Method
     /// </summary>
-    class DichotomyMethod:Method
+    class DichotomyMethod:Method //TODO:Почему на одну итерацию больше чем нужно
     {
         //public static int interamount;
         public static double deltaa;
@@ -43,27 +46,30 @@ namespace PRIMAT_LAB1
         public double calc(double epsilon, double a, double b)
         {
             xmin = 0;
-            Console.WriteLine("Interation: " + interamount + ", Current interval: (" + a + ", " + b + ")" + ", difference betweent previous interval: " + (previouslength / Math.Abs(b - a)) + ", xmin: " + ((b + a) / 2) +  ", Current amount of func calculations: " + amountoffunccomputation);
-            xmin = (a + b) / 2;
-            Random rand = new Random();
-            deltaa = rand.NextDouble() * ((b - a) / 2) ;
-            while (deltaa > epsilon/2)
+            while (Math.Abs(b-a) > epsilon)
             {
                 interamount++;
-                double x1 = ((a + b) / 2) - deltaa;
-                double x2 = ((a + b) / 2) + deltaa;
+                double x1 = ((a + b) / 2) - epsilon/4;
+                double x2 = ((a + b) / 2) + epsilon/4;
                 double fx1 = f(x1);
                 double fx2 = f(x2);
                 previouslength = b - a;
                 if (fx1 > fx2)
                 {
-                    calc(epsilon, x1, b);
+                    a = x1;
+                }
+                else if (fx1 < fx2)
+                {
+                    b = x2;
                 }
                 else
                 {
-                    calc(epsilon, a, x2);
+                    a = x1;
+                    b = x2;
                 }
+                Console.WriteLine("Interation: " + interamount + ", Current interval: (" + a + ", " + b + ")" + ", difference betweent previous interval: " + (previouslength / Math.Abs(b - a)) + ", xmin: " + ((b + a) / 2) +  ", Current amount of func calculations: " + amountoffunccomputation);
             }
+            xmin = (a + b) / 2;
             return xmin;
         }
     }
@@ -162,13 +168,17 @@ namespace PRIMAT_LAB1
                 previouslength = b - a;
                 if (fx1 < fx2)
                 {
-                    (b, x2, fx2) = (x2, x1, fx1);
+                    b = x2;
+                    x2 = x1;
+                    fx2 = fx1;
                     x1 = a + ((double)fibonacciSeries[n - 2] / fibonacciSeries[n]) * (b - a);
                     fx1 = f(x1);
                 }
                 else
                 {
-                    (a, x1, fx1) = (x1, x2, fx2);
+                    a = x1;
+                    x1 = x2;
+                    fx1 = fx2;
                     x2 = a + ((double)fibonacciSeries[n - 1] / fibonacciSeries[n]) * (b - a);
                     fx2 = f(x2);
                 }
@@ -177,116 +187,7 @@ namespace PRIMAT_LAB1
             return ((a + b) / 2);
         }
     }
-    /// <summary>
-    /// Vlada's Parabola Method
-    /// </summary>
-    class ParabolaMethod:Method
-    {
-        private static int funccall_num;
-
-        public double calc(double epsilon, double a, double b)
-        {
-            int it_num = 0;
-            Random rand = new Random();
-            double prevMin = 0;
-            double middle = rand.NextDouble() * (b - a) + a;
-            double f_middle = f(middle);
-
-            if (a == 0)
-            {
-                a += epsilon;
-            }
-
-            if (b == 0)
-            {
-                b -= epsilon;
-            }
-
-            double f_left = f(a);
-            double f_right = f(b);
-
-            while (!(f_left > f_middle && f_right > f_middle))
-            {
-                middle = rand.NextDouble() * (b - a) + a;
-                f_middle = f(middle);
-
-                if (f_middle > f_left && f_middle > f_right)
-                {
-                    throw new Exception("Parabola has no minimum");
-                }
-            }
-
-            var curMin = CalculateMin();
-            double f_curMin = f(curMin);
-
-            Console.WriteLine("Левая граница: " + a);
-            Console.WriteLine("Правая граница: " + b);
-            Console.WriteLine("Рандомная точка на интервале: " + middle);
-            Console.WriteLine("Минимум функции: " + curMin
-                                                  + "\n-----------------");
-
-            while (Math.Abs(curMin - prevMin) > epsilon)
-            {
-                var prev_interval = Math.Abs(b - a);
-                SetNewInterval();
-                it_num += 1;
-                Console.WriteLine("Номер итерации: " + it_num + ", Левая граница: " + a + ", Правая граница: " + b + ", Рандомная точка на интервале: " + middle + ", Минимум функции: " + curMin + ", Интервал сократился на: " + (prev_interval / (b - a)) + ", Номер обращения к функции вычисления: " + funccall_num);
-                curMin = CalculateMin();
-                f_curMin = f(curMin);
-            }
-            Console.WriteLine("\nMinimum = " + curMin);
-            Console.WriteLine("----------------------" +
-                              "\nВсего количество итераций: " + it_num
-                              + "\nВсего обращений к функции вычисления: " + funccall_num);
-            double f(double x)
-            {
-                funccall_num += 1;
-                return Math.Sin(x) - Math.Log(Math.Pow(x, 2)) - 1;
-            }
-            double CalculateMin()
-            {
-                return middle - (Math.Pow(middle - a, 2) * (f_middle - f_right) - Math.Pow(middle - b, 2) *
-                        (f_middle - f_left))
-                    / (2 * ((middle - a) * (f_middle - f_right) - (middle - b) * (f_middle - f_left)));
-            }
-
-            void SetNewInterval()
-            {
-                prevMin = curMin;
-                if (a < curMin && curMin < middle)
-                {
-                    if (f_curMin >= f_middle)
-                    {
-                        a = curMin;
-                        f_left = f_curMin;
-                    }
-                    else if (f_curMin < f_middle)
-                    {
-                        b = middle;
-                        f_right = f_middle;
-                        middle = curMin;
-                        f_middle = f_curMin;
-                    }
-                }
-                else if (middle < curMin && curMin < b)
-                {
-                    if (f_middle >= f_curMin)
-                    {
-                        a = middle;
-                        f_left = f_middle;
-                        middle = curMin;
-                        f_middle = f_curMin;
-                    }
-                    else if (f_middle < f_curMin)
-                    {
-                        b = curMin;
-                        f_right = f_curMin;
-                    }
-                }
-            }
-            return curMin;
-        }
-    }
+   
     /// <summary>
     /// Fedor's Brent Method
     /// </summary>
@@ -305,18 +206,18 @@ namespace PRIMAT_LAB1
             double u = 0;
             interamount = 0;
             amountoffunccomputation = 0;
-            while (Math.Round(Math.Abs(d), epsilon.ToString().Length - 3) > epsilon)
+            while (Math.Abs(d) > epsilon)
             {
                 
-                Console.WriteLine("Interation: " + interamount + ", Current interval: (" + a + ", " + c + ")" + ", xmin: " + ((c + a) / 2) +  ", Current amount of func calculations: " + amountoffunccomputation);
+                //Console.WriteLine("Interation: " + interamount + ", Current interval: (" + a + ", " + c + ")" + ", xmin: " + ((c + a) / 2) +  ", Current amount of func calculations: " + amountoffunccomputation);
                 double g = e;
                 e = d;
- 
+
                 if (!(isSame(x, w, v) && isSame(fx, fw, fv)))
                 {
                     u = parabolaMin(x, w, v, fx, fw, fv);
                 }
- 
+
                 if (a + epsilon <= u && c - epsilon >= u && Math.Abs(u - x) < 0.5 * g)
                 {
                     d = Math.Abs(u - x);
@@ -380,6 +281,7 @@ namespace PRIMAT_LAB1
                     }
                 }
                 interamount++;
+                Console.WriteLine("Interation: " + interamount + ", Current interval: (" + a + ", " + c + ")" + ", xmin: " + ((c + a) / 2) +  ", Current amount of func calculations: " + amountoffunccomputation);
             }
             return x;
         }
@@ -400,17 +302,17 @@ namespace PRIMAT_LAB1
         static void Main(string[] args)
         {
             //init vals
-            double epsilon = 0.0001;
+            double epsilon = 0.001;
             double left = 0;
             double right = 6;
             double xmin = 0;
             
-            //dichotomy method
-            Console.WriteLine("Dichotomy method:");
-            DichotomyMethod dichotomyMethod = new DichotomyMethod();
-            xmin = dichotomyMethod.calc(epsilon, left, right);
-            Console.WriteLine(xmin + ", yval: " + f(xmin) + ", amount of iterations: " + dichotomyMethod.getIterAmount() + ", amount of func calculations: " + dichotomyMethod.getAmountOfComputations());
-            
+             //dichotomy method
+             Console.WriteLine("Dichotomy method:");
+             DichotomyMethod dichotomyMethod = new DichotomyMethod();
+             xmin = dichotomyMethod.calc(epsilon, left, right);
+             Console.WriteLine(xmin + ", yval: " + f(xmin) + ", amount of iterations: " + dichotomyMethod.getIterAmount() + ", amount of func calculations: " + dichotomyMethod.getAmountOfComputations());
+             
             //Golden method
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine("Golden Ratio Method: ");
@@ -429,7 +331,7 @@ namespace PRIMAT_LAB1
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine("Parabola method: ");
             ParabolaMethod pmethod = new ParabolaMethod();
-            xmin = pmethod.calc(epsilon, left, right);
+            xmin = pmethod.calc(left, right, epsilon);
             Console.WriteLine(xmin + ", yval: " + f(xmin));
             
             //Brent method
